@@ -1,28 +1,42 @@
-language: objective-c
+# Project specific config
+matrix:
+  include:
+    - os: linux
+      language: python
+      python: "2.7"
+    - os: linux
+      language: python
+      python: "3.5"
+      env: ATOM_CHANNEL=beta
+    - os: osx
+      language: generic
+      before_install:
+        - brew update
+        # Need a way to check if it's installed already or not...
+        - brew install python
+    - os: osx
+      language: generic
+      before_install:
+        - brew update
+        # Need a way to check if it's installed already or not...
+        - brew install python
+      env: ATOM_CHANNEL=beta
+
+install:
+  - pip install pydocstyle
+
+# Generic setup follows
+script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
 
 notifications:
   email:
     on_success: never
     on_failure: change
 
-script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
-
 git:
   depth: 10
 
 sudo: false
-
-os:
-  - linux
-  - osx
-
-env:
-  global:
-    - APM_TEST_PACKAGES="atom-linter"
-
-  matrix:
-    - ATOM_CHANNEL=stable
-    - ATOM_CHANNEL=beta
 
 addons:
   apt:
@@ -30,4 +44,8 @@ addons:
     - build-essential
     - git
     - libgnome-keyring-dev
-    - fakeroot###
+    - fakeroot
+
+branches:
+  only:
+    - master

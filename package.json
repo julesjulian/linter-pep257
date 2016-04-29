@@ -1,9 +1,9 @@
 {
-  "name": "linter-pep257",
+  "name": "linter-pydocstyle",
   "main": "./lib/init",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "description": "Lint Python docstrings on the fly.",
-  "repository": "https://github.com/AtomLinter/linter-pep257",
+  "repository": "https://github.com/AtomLinter/linter-pydocstyle",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
@@ -16,6 +16,10 @@
     }
   },
   "dependencies": {
-    "atom-linter": "^4.5.1"
-  }
+    "atom-linter": "^4.6.1",
+    "atom-package-deps": "^4.0.1"
+  },
+  "package-deps": [
+    "linter"
+  ]
 }
